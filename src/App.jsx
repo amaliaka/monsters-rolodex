@@ -23,12 +23,18 @@ class App extends Component {
             console.log(this.state);
           }
         )
-      ); // setState is a method that comes from Component
+      );
   }
 
   render() {
     return (
       <div className="App">
+        <input
+          className="search-box"
+          type="search"
+          placeholder="search monsters"
+          onChange={(event) => console.log(event.target.value)}
+        />
         {this.state.monsters.map((monster) => {
           return (
             <div key={monster.id}>
