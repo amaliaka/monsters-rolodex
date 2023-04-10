@@ -8,9 +8,9 @@ class App extends Component {
     this.state = {
       // JSON object (data in Vue)
       mosnters: [
-        { name: "Frankenstein" },
-        { name: "Dracula" },
-        { name: "Zombie" },
+        { name: "Frankenstein", id: "asc1" },
+        { name: "Dracula", id: "asc2" },
+        { name: "Zombie", id: "asc3" },
       ],
     };
   }
@@ -18,7 +18,11 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.mosnters.map((monster) => {
-          return <h1 key={monster.name}>{monster.name}</h1>;
+          return (
+            <div key={monster.id}>
+              <h1>{monster.name}</h1>
+            </div>
+          );
         })}
       </div>
     );
