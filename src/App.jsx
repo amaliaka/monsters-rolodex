@@ -7,17 +7,29 @@ class App extends Component {
 
     this.state = {
       // JSON object (data in Vue)
-      mosnters: [
-        { name: "Frankenstein", id: "asc1" },
-        { name: "Dracula", id: "asc2" },
-        { name: "Zombie", id: "asc3" },
-      ],
+      monsters: [],
     };
   }
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) =>
+        this.setState(
+          () => {
+            return { monsters: users };
+          },
+          () => {
+            console.log(this.state);
+          }
+        )
+      ); // setState is a method that comes from Component
+  }
+
   render() {
     return (
       <div className="App">
-        {this.state.mosnters.map((monster) => {
+        {this.state.monsters.map((monster) => {
           return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
