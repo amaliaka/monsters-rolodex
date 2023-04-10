@@ -7,18 +7,11 @@ const App = () => {
   console.log("render called");
   const [searchField, setSearchField] = useState("");
   const [monsters, setMonsters] = useState([]);
-  const [stringField, setStringField] = useState("");
   const [filteredMonsters, setFilteredMonsters] = useState(monsters);
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLowerCase();
     setSearchField(searchFieldString);
-  };
-
-  // this function is not related to the filter function
-  const onStringChange = (event) => {
-    const stringFieldString = event.target.value;
-    setStringField(stringFieldString);
   };
 
   // prevent infinite loop
@@ -45,11 +38,6 @@ const App = () => {
         className="search-box"
         placeholder="search monsters"
         handleChange={onSearchChange}
-      />
-      <SearchBox
-        className="search-box"
-        placeholder="test search box"
-        handleChange={onStringChange}
       />
       <CardList monsters={filteredMonsters} />
     </div>
