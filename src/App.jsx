@@ -46,11 +46,11 @@ const App = () => {
         placeholder="search monsters"
         handleChange={onSearchChange}
       />
-      {/*<SearchBox
+      <SearchBox
         className="search-box"
         placeholder="test search box"
         handleChange={onStringChange}
-  />*/}
+      />
       <CardList monsters={filteredMonsters} />
     </div>
   );
