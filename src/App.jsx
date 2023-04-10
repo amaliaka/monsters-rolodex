@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       // JSON object (data in Vue)
       monsters: [],
+      searchField: "",
     };
   }
 
@@ -26,23 +27,30 @@ class App extends Component {
       );
   }
 
-  filterMonsters = (event) => {
-    const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLowerCase().includes(event.target.value);
+  onSearchChange = (event) => {
+    const searchField = event.target.value.toLowerCase();
+    this.setState(() => {
+      return { searchField };
     });
-    this.setState(() => ({ monsters: filteredMonsters }));
   };
 
   render() {
+    const { monsters, searchField } = this.state;
+    const { onSearchChange } = this;
+
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchField);
+    });
+
     return (
       <div className="App">
         <input
           className="search-box"
           type="search"
           placeholder="search monsters"
-          onChange={(event) => this.filterMonsters(event)}
+          onChange={onSearchChange}
         />
-        {this.state.monsters.map((monster) => {
+        {filteredMonsters.map((monster) => {
           return (
             <div key={monster.id}>
               <h1>{monster.name}</h1>
